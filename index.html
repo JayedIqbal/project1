@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculate</title>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form>
+      <label for="input">Enter a number or string:</label>
+      <input type="text" id="input" name="input"><br><br>
+      
+      <label for="select">Choose an option:</label>
+      <select id="select" name="select">
+        <option value="fibonacci">Fibonacci</option>
+        <option value="leapyear">Leap year</option>
+        <option value="alphabetical">Alphabetically order</option>
+      </select><br><br>
+
+      <button onclick="calculate()">Calculate</button><br><br>
+
+      <label for="result">Result:</label>
+      <input type="text" id="result" name="result" readonly>
+    </form>
+
+    <script>
+      function calculate() {
+        // Get input value
+        let input = document.getElementById("input").value;
+
+        // Get selected option value
+        let select = document.getElementById("select").value;
+
+        // Perform calculation based on selected option
+        let result;
+        if (select === "fibonacci") {
+          result = fibonacci(input);
+        } else if (select === "leapyear") {
+          result = isLeapYear(input);
+        } else if (select === "alphabetical") {
+          result = alphabeticalOrder(input);
+        }
+
+        // Display result
+        document.getElementById("result").value = result;
+      }
+
+      // Fibonacci function
+      function fibonacci(num) {
+        if (num <= 1) {
+          return num;
+        }
+        return fibonacci(num - 1) + fibonacci(num - 2);
+      }
+
+      // Leap year function
+      function isLeapYear(year) {
+        if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+          return year + " is a leap year.";
+        } else {
+          return year + " is not a leap year.";
+        }
+      }
+
+      // Alphabetical order function
+      function alphabeticalOrder(str) {
+        return str.split("").sort().join("");
+      }
+    </script>
+  </body>
+</html>
